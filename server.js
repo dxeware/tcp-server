@@ -4,9 +4,15 @@ var fs = require('fs');
 function saveToFile(string, callback) {
 
   var time = new Date().toTimeString();
+  var outputDir = __dirname + '/files/';
   fileName = 'req.timestamp' + time.replace(/ /g, '');
 
-  fs.writeFile(__dirname + '/files/' + fileName, string, function(err) {
+  // If output directory doesn't exist, create
+  if (!fs.existsSync(outputDir)){
+    fs.mkdirSync(outputDir,0744);
+  }
+
+  fs.writeFile(outputDir+fileName, string, function(err) {
     if (err) throw err;
 
     console.log("File was saved!");
