@@ -18,7 +18,9 @@ function saveToFile(string, callback) {
 
   // Write file with string as content
   fs.writeFile(outputDir+fileName, string, function(err) {
-    if (err) throw err;
+    if (err) {
+      throw err;
+    }
 
     console.log("File was saved!");
 
